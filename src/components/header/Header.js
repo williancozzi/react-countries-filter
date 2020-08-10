@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { formatNumber } from "../../helpers/formatHelpers.js";
+import css from "./header.module.css";
 
 export default class Header extends Component {
   handleInputChange = (event) => {
@@ -10,14 +12,20 @@ export default class Header extends Component {
     const { filter, countryCount, totalPopulation } = this.props;
 
     return (
-      <div>
-        <input type="text" value={filter} onChange={this.handleInputChange} /> |
-        <span>
+      <div className={css.flexRow}>
+        <input
+          placeholder="Filter"
+          type="text"
+          value={filter}
+          onChange={this.handleInputChange}
+        />{" "}
+        |
+        <span className={css.countries}>
           Countries: <strong>{countryCount}</strong>{" "}
         </span>
         |
-        <span>
-          Population: <strong>{totalPopulation}</strong> |
+        <span className={css.population}>
+          Population: <strong>{formatNumber(totalPopulation)}</strong> |
         </span>
       </div>
     );
